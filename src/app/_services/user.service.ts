@@ -1,8 +1,8 @@
 ﻿import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { User } from '../_models/index';
-import { Router } from '../../../node_modules/@angular/router';
+import { User } from '../_models';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UserService {
@@ -10,7 +10,7 @@ export class UserService {
         private router: Router) { }
 
     getAll() {
-        return JSON.parse(localStorage.getItem("users"));
+        return JSON.parse(localStorage.getItem('users'));
     }
 
     getById(id: number) {
@@ -18,9 +18,9 @@ export class UserService {
     }
 
     create(user: User) {
-        let users: any[] = JSON.parse(localStorage.getItem("users"));
+        let users: any[] = JSON.parse(localStorage.getItem('users'));
         users.push(user);
-        localStorage.setItem("users", JSON.stringify(users));
+        localStorage.setItem('users', JSON.stringify(users));
         this.router.navigate(['/login']);
     }
 

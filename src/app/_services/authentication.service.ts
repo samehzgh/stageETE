@@ -10,7 +10,11 @@ export class AuthenticationService {
     constructor(private http: HttpClient, private router: Router) { }
 
     login(username: string, password: string) {
-        let users: any[] = JSON.parse(localStorage.getItem("users"));
+    if( username == 'admin' && password == 'admin')
+    {localStorage.setItem('isLoggedin', 'true');
+    this.router.navigate(['/dashboard']);}
+
+  /*let users: any[] = JSON.parse(localStorage.getItem("users"));
         let foundUser = users.find(function (element) {
             return element.username === username && element.password === password;
         });
@@ -23,7 +27,7 @@ export class AuthenticationService {
             { 
                   alert("User Not Found");
             }
-
+*/
 
     }
 
