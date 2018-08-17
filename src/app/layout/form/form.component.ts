@@ -61,7 +61,8 @@ export class FormComponent implements OnInit {
         ]);
         this.codepostal = new FormControl('', [
             Validators.required,
-            Validators.minLength(4)
+            Validators.minLength(4),
+            Validators.maxLength(4)
         ]);
         this.CIN = new FormControl('', [
             Validators.required,
@@ -69,21 +70,24 @@ export class FormComponent implements OnInit {
         ]);
         this.Tel = new FormControl('', [
             Validators.required,
-            Validators.minLength(8)
+            Validators.minLength(8),
+            Validators.maxLength(8)
         ]);
         this.Fixe = new FormControl('', [
             Validators.required,
-            Validators.minLength(8)
+            Validators.minLength(8),
+            Validators.maxLength(8)
         ]);
 
     }
 
+    // convenience getter for easy access to form fields
+    get f() { return this.myform.controls; }
+
     createForm() {
         this.myform = new FormGroup({
-            name: new FormGroup({
-                firstName: this.firstName,
-                lastName: this.lastName,
-            }),
+            firstName: this.firstName,
+            lastName: this.lastName,
             email: this.email,
             codepostal: this.codepostal,
             Tel: this.Tel,
@@ -93,7 +97,7 @@ export class FormComponent implements OnInit {
 
     }
     onSubmit() {
-        if (this.myform.valid){
+        if (this.myform.valid) {
             console.log("Form Submitted!", this.myform.value);
             this.stagiaireService.addStagiaire(this.myform.value);
         }

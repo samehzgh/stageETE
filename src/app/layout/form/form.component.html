@@ -4,46 +4,51 @@
     <div class="row">
         <div class="col-lg-6">
             <form novalidate [formGroup]="myform" (ngSubmit)="onSubmit()">
-                <fieldset formGroupName="name" class="form-group">
-                    <div class="form-group" [ngClass]="{
+                <div class="form-group" [ngClass]="{
                                    'has-danger': firstName.invalid && (firstName.dirty || firstName.touched),
                                    'has-success': firstName.valid && (firstName.dirty || firstName.touched)
                                  }">
-                        <label>First Name</label>
-                        <input type="text" class="form-control" formControlName="firstName" required>
-                        <div class="form-control-feedback" *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" formControlName="firstName" [ngClass]="{ 'is-invalid': f.firstName.errors }">
 
-                        </div>
+                    <div *ngIf="firstName.errors.required" class="invalid-feedback">
+                        <div>First Name is required</div>
+                    </div>
 
-                        <!--
+
+                    <!--
                                 <pre>Valid? {{ myform.controls.name.controls.firstName.valid }}</pre>
                                    <pre>Dirty? {{ myform.controls.name.controls.firstName.dirty }}</pre>
                             -->
-                    </div>
+                </div>
 
-                    <div class="form-group" [ngClass]="{
+                <div class="form-group" [ngClass]="{
                                           'has-danger': lastName.invalid && (lastName.dirty || lastName.touched),
                                 'has-success': lastName.valid && (lastName.dirty || lastName.touched)
                             }">
-                        <label>Last Name</label>
-                        <input type="text" class="form-control" formControlName="lastName" required>
-                        <div class="form-control-feedback" *ngIf="lastName.errors && (lastName.dirty || lastName.touched)">
-                        </div>
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" formControlName="lastName" [ngClass]="{ 'is-invalid': f.lastName.errors }">
+
+                    <div *ngIf="lastName.errors.required" class="invalid-feedback">
+                        <div>Last Name is required</div>
                     </div>
-                </fieldset>
+                </div>
 
 
                 <fieldset class="form-group">
                     <label>Date & lieu de naissance :</label>
                     <input class="form-control" placeholder="00/00/0000">
                 </fieldset>
+
+
                 <div class="form-group" [ngClass]="{
                                 'has-danger': CIN.invalid && (CIN.dirty || CIN.touched),
                                 'has-success': CIN.valid && (CIN.dirty || CIN.touched)
                             }">
                     <label>N°CIN</label>
-                    <input type="text" class="form-control" formControlName="CIN" required>
-                    <div class="form-control-feedback" *ngIf="CIN.errors && (CIN.dirty || CIN.touched)">
+                    <input type="text" class="form-control" formControlName="CIN" [ngClass]="{ 'is-invalid': f.CIN.errors }">
+                    <div *ngIf="CIN.errors.minlength" class="invalid-feedback">
+                        <div>MinLength error</div>
                     </div>
                 </div>
 
@@ -71,8 +76,9 @@
                             'has-success': codepostal.valid && (codepostal.dirty || codepostal.touched)
                         }">
                     <label>Code postal</label>
-                    <input type="text" class="form-control" formControlName="codepostal" required>
-                    <div class="form-control-feedback" *ngIf="codepostal.errors && (codepostal.dirty || codepostal.touched)">
+                    <input type="text" class="form-control" formControlName="codepostal" [ngClass]="{ 'is-invalid': f.codepostal.errors }">
+                    <div *ngIf="codepostal.errors.required" class="invalid-feedback">
+                        <div>Code postal is required</div>
                     </div>
                 </div>
 
@@ -83,8 +89,11 @@
                         'has-success': Tel.valid && (Tel.dirty || Tel.touched)
                          }">
                     <label>Tel mobile</label>
-                    <input type="text" class="form-control" formControlName="Tel" required>
+                    <input type="text" class="form-control" formControlName="Tel" [ngClass]="{ 'is-invalid': f.Tel.errors }">
                     <div class="form-control-feedback" *ngIf="Tel.errors && (Tel.dirty || Tel.touched)">
+                    </div>
+                    <div *ngIf="Tel.errors.required" class="invalid-feedback">
+                        <div>Tel is required</div>
                     </div>
                 </div>
 
@@ -93,10 +102,12 @@
                     'has-success': Fixe.valid && (Fixe.dirty || Fixe.touched)
                      }">
                     <label>Fixe</label>
-                    <input type="text" class="form-control" formControlName="Fixe" required>
+                    <input type="text" class="form-control" formControlName="Fixe" [ngClass]="{ 'is-invalid': f.Fixe.errors }">
                     <div class="form-control-feedback" *ngIf="Fixe.errors && (Fixe.dirty || Fixe.touched)">
-
                     </div>
+                    <div *ngIf="Fixe.errors.required" class="invalid-feedback">
+                            <div>Fixe is required</div>
+                        </div>
                 </div>
 
 
@@ -106,10 +117,13 @@
                                     'has-success': email.valid && (email.dirty || email.touched)
                                     }">
                     <label>Email</label>
-                    <input type="email" class="form-control" formControlName="email" required>
+                    <input type="email" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': f.email.errors }">
                     <div class="form-control-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
                     </div>
 
+                    <div *ngIf="email.errors.required" class="invalid-feedback">
+                            <div>Email is required</div>
+                        </div>
                     <!--
                                 <pre>Valid? {{ myform.controls.email.valid }}</pre>
                                 <pre>Dirty? {{ myform.controls.email.dirty }}</pre>
@@ -133,7 +147,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button [disabled]="! myform.valid" type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
 
                 </div>
 
