@@ -8,7 +8,6 @@ import { StagiaireService } from '../../_services/stagiaire.service';
 import { ReactiveFormsModule, FormsModule } from '../../../../node_modules/@angular/forms';
 import { BrowserModule } from '../../../../node_modules/@angular/platform-browser';
 
-
 @NgModule({
     imports: [CommonModule,
         FormRoutingModule,

@@ -14,7 +14,7 @@ import {
 
 import { BrowserModule } from '@angular/platform-browser';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { create } from 'domain';
+
 
 @Component({
     moduleId: module.id.toString(),
@@ -42,8 +42,8 @@ export class FormComponent implements OnInit {
     lastName: FormControl;
     email: FormControl;
     codepostal: FormControl;
-    tel: FormControl;
-    fix: FormControl;
+    Tel: FormControl;
+    Fixe: FormControl;
     CIN: FormControl;
 
 
@@ -67,11 +67,11 @@ export class FormComponent implements OnInit {
             Validators.required,
             Validators.minLength(8)
         ]);
-        this.tel = new FormControl('', [
+        this.Tel = new FormControl('', [
             Validators.required,
             Validators.minLength(8)
         ]);
-        this.fix = new FormControl('', [
+        this.Fixe = new FormControl('', [
             Validators.required,
             Validators.minLength(8)
         ]);
@@ -86,8 +86,8 @@ export class FormComponent implements OnInit {
             }),
             email: this.email,
             codepostal: this.codepostal,
-            tel: this.tel,
-            fix: this.fix,
+            Tel: this.Tel,
+            Fixe: this.Fixe,
             CIN: this.CIN
         });
 
@@ -95,11 +95,9 @@ export class FormComponent implements OnInit {
     onSubmit() {
         if (this.myform.valid){
             console.log("Form Submitted!", this.myform.value);
-            this.myform.reset();
+            this.stagiaireService.addStagiaire(this.myform.value);
         }
     }
-
-    
 }
 
 
