@@ -1,33 +1,58 @@
 <div [@routerTransition]>
     <app-page-header [heading]="'Tables'" [icon]="'fa-table'"></app-page-header>
     <div class="row">
-        <div class="col col-xl-6 col-lg-12">
+        <div class="col col-xl-12 col-lg-12">
             <div class="card mb-3">
-                
+
                 <div class="card-header">
-                   Liste des stagiaires
+                    Liste des stagiaires
                 </div>
-                <div class="card-body table-responsive" >
+                <div class="card-body table-responsive">
                     <table class="table">
-                       
+
                         <tr>
                             <th>First Name</th>
                             <th>Last Name</th>
-                            <th>Username</th>
+                            <th>Date & lieu de naissance</th>
+                            <th>N°CIN</th>
+                            <th>Délivrée le</th>
+                            <th>Adresse </th>
+                            <th>Code postal</th>
+                            <th>Tel mobile</th>
+                            <th>Fixe</th>
+                            <th>Email</th>
+                            <th>Institut </th>
+                            <th>Skype-id</th>
+                            <th>Adresse MAC LAN</th>
                         </tr>
-                      
+
                         <tbody>
-                        <tr *ngFor="let user of users">
-                        
-                            <td>{{user.firstName}}</td>
-                            <td>{{user.lastName}}</td>
-                            <td>{{user.username}}</td>
-                        </tr>
-                        
+                            <tr *ngFor="let stagiaire of stagiaires">
+
+                                <td>{{stagiaire.firstName}}</td>
+                                <td>{{stagiaire.lastName}}</td>
+                                <td>{{stagiaire.dateN}}</td>
+                                <td>{{stagiaire.CIN}}</td>
+                                <td>{{stagiaire.adresse}}</td>
+                                <td>{{stagiaire.delivre}}</td>
+                                <td>{{stagiaire.codepostal}}</td>
+                                <td>{{stagiaire.Tel}}</td>
+                                <td>{{stagiaire.Fixe}}</td>
+                                <td>{{stagiaire.email}}</td>
+                                <td>{{stagiaire.institut}}</td>
+                                <td>{{stagiaire.skype}}</td>
+                                <td>{{stagiaire.adresseMac}}</td>
+                            </tr>
+
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+
+	<button class="btn btn-link" ng-click="exportToExcel('#table1')">
+            <span class="glyphicon glyphicon-share"></span> Export to Excel
+        </button>
+
 </div>

@@ -11,3 +11,4 @@ import { PageHeaderModule } from '../../shared';
     declarations: [TablesComponent]
 })
 export class TablesModule {}
+

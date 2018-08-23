@@ -15,7 +15,6 @@ import { BrowserModule } from '../../../../node_modules/@angular/platform-browse
         FormsModule,
         ReactiveFormsModule
     ],
-    providers: [StagiaireService],
     declarations: [FormComponent]
 })
 export class FormModule { }

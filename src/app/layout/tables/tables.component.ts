@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { UserService } from '../../_services';
+import { StagiaireService } from '../../_services/stagiaire.service';
 
 @Component({
     selector: 'app-tables',
@@ -9,10 +10,11 @@ import { UserService } from '../../_services';
     animations: [routerTransition()]
 })
 export class TablesComponent implements OnInit {
-    users: any[];
-    constructor(private userService: UserService) {
-        this.users = this.userService.getAll();
+    stagiaires: any[];
+    constructor(private stagiaireService: StagiaireService) {
+        this.stagiaires = this.stagiaireService.getStagiaires();
      }
 
     ngOnInit() { }
 }
+

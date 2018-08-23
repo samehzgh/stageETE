@@ -9,9 +9,10 @@
                                    'has-success': firstName.valid && (firstName.dirty || firstName.touched)
                                  }">
                     <label>First Name</label>
-                    <input type="text" class="form-control" formControlName="firstName" [ngClass]="{ 'is-invalid': f.firstName.errors }">
+                    <input type="text" class="form-control" formControlName="firstName" [ngClass]="{ 'is-invalid': firstName.invalid && (firstName.dirty || firstName.touched) }">
 
-                    <div *ngIf="firstName.errors.required" class="invalid-feedback">
+
+                    <div *ngIf="firstName.touched && firstName.errors?.required" class="invalid-feedback">
                         <div>First Name is required</div>
                     </div>
 
@@ -27,18 +28,24 @@
                                 'has-success': lastName.valid && (lastName.dirty || lastName.touched)
                             }">
                     <label>Last Name</label>
-                    <input type="text" class="form-control" formControlName="lastName" [ngClass]="{ 'is-invalid': f.lastName.errors }">
+                    <input type="text" class="form-control" formControlName="lastName" [ngClass]="{ 'is-invalid': lastName.invalid && (lastName.dirty || lastName.touched) }">
 
-                    <div *ngIf="lastName.errors.required" class="invalid-feedback">
+                    <div *ngIf="lastName.errors?.required" class="invalid-feedback">
                         <div>Last Name is required</div>
                     </div>
                 </div>
 
 
-                <fieldset class="form-group">
-                    <label>Date & lieu de naissance :</label>
-                    <input class="form-control" placeholder="00/00/0000">
-                </fieldset>
+                <div class="form-group" [ngClass]="{
+                    'has-danger': dateN.invalid && (dateN.dirty || dateN.touched),
+                    'has-success': dateN.valid && (dateN.dirty || dateN.touched)
+                }">
+        <label>Date & lieu de naissance :</label>
+        <input type="text" placeholder="" class="form-control" formControlName="dateN" [ngClass]="{ 'is-invalid': dateN.invalid && (dateN.dirty || dateN.touched) }">
+        <div *ngIf="dateN.errors?.required" class="invalid-feedback">
+            <div>Date & lieu de naissance invalid</div>
+        </div>
+    </div>
 
 
                 <div class="form-group" [ngClass]="{
@@ -46,27 +53,55 @@
                                 'has-success': CIN.valid && (CIN.dirty || CIN.touched)
                             }">
                     <label>N°CIN</label>
-                    <input type="text" class="form-control" formControlName="CIN" [ngClass]="{ 'is-invalid': f.CIN.errors }">
-                    <div *ngIf="CIN.errors.minlength" class="invalid-feedback">
-                        <div>MinLength error</div>
+                    <input type="text" class="form-control" formControlName="CIN" [ngClass]="{ 'is-invalid': CIN.invalid && (CIN.dirty || CIN.touched) }">
+                    <div *ngIf="CIN.errors?.minlength || CIN.errors?.maxlength" class="invalid-feedback">
+                        <div>CIN doit étre sur 8 chiffres</div>
                     </div>
                 </div>
 
 
 
-                <label>Délivrée le :</label>
-                <input type="date" class="form-control" placeholder="00/00/0000">
+                <div class="form-group" [ngClass]="{
+                    'has-danger': delivre.invalid && (delivre.dirty || delivre.touched),
+                    'has-success': delivre.valid && (delivre.dirty || delivre.touched)
+                  }">
+                    <label>Délivrée le :</label>
+                    <input type="date" placeholder="00/00/0000" class="form-control" formControlName="delivre" [ngClass]="{ 'is-invalid': delivre.invalid && (delivre.dirty || delivre.touched) }">
 
 
-                <div class="form-group">
-                    <label>Adresse :</label>
-                    <input class="form-control" placeholder="">
+                    <div *ngIf="delivre.touched && delivre.errors?.required" class="invalid-feedback">
+                        <div>date is required</div>
+                    </div>
                 </div>
 
 
-                <div class="form-group">
-                    <label>ville :</label>
-                    <input class="form-control" placeholder="">
+                <div class="form-group" [ngClass]="{
+                    'has-danger': adresse.invalid && (adresse.dirty || adresse.touched),
+                    'has-success': adresse.valid && (adresse.dirty || adresse.touched)
+                  }">
+                    <label>Adresse :</label>
+                    <input type="text" class="form-control" formControlName="adresse" [ngClass]="{ 'is-invalid': adresse.invalid && (adresse.dirty || adresse.touched) }">
+
+
+                    <div *ngIf="adresse.touched && adresse.errors?.required" class="invalid-feedback">
+                        <div>Adresse is required</div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="form-group" [ngClass]="{
+                    'has-danger': ville.invalid && (ville.dirty || ville.touched),
+                    'has-success': ville.valid && (ville.dirty || ville.touched)
+                  }">
+                    <label>Ville :</label>
+                    <input type="text" class="form-control" formControlName="ville" [ngClass]="{ 'is-invalid': ville.invalid && (ville.dirty || ville.touched) }">
+
+
+                    <div *ngIf="ville.touched && ville.errors?.required" class="invalid-feedback">
+                        <div>Ville is required</div>
+                    </div>
                 </div>
 
 
@@ -76,8 +111,8 @@
                             'has-success': codepostal.valid && (codepostal.dirty || codepostal.touched)
                         }">
                     <label>Code postal</label>
-                    <input type="text" class="form-control" formControlName="codepostal" [ngClass]="{ 'is-invalid': f.codepostal.errors }">
-                    <div *ngIf="codepostal.errors.required" class="invalid-feedback">
+                    <input type="text" class="form-control" formControlName="codepostal" [ngClass]="{ 'is-invalid': codepostal.invalid && (codepostal.dirty || codepostal.touched) }">
+                    <div *ngIf="codepostal.errors?.required" class="invalid-feedback">
                         <div>Code postal is required</div>
                     </div>
                 </div>
@@ -89,10 +124,10 @@
                         'has-success': Tel.valid && (Tel.dirty || Tel.touched)
                          }">
                     <label>Tel mobile</label>
-                    <input type="text" class="form-control" formControlName="Tel" [ngClass]="{ 'is-invalid': f.Tel.errors }">
+                    <input type="text" class="form-control" formControlName="Tel" [ngClass]="{ 'is-invalid': Tel.invalid && (Tel.dirty || Tel.touched) }">
                     <div class="form-control-feedback" *ngIf="Tel.errors && (Tel.dirty || Tel.touched)">
                     </div>
-                    <div *ngIf="Tel.errors.required" class="invalid-feedback">
+                    <div *ngIf="Tel.errors?.required" class="invalid-feedback">
                         <div>Tel is required</div>
                     </div>
                 </div>
@@ -102,12 +137,12 @@
                     'has-success': Fixe.valid && (Fixe.dirty || Fixe.touched)
                      }">
                     <label>Fixe</label>
-                    <input type="text" class="form-control" formControlName="Fixe" [ngClass]="{ 'is-invalid': f.Fixe.errors }">
+                    <input type="text" class="form-control" formControlName="Fixe" [ngClass]="{ 'is-invalid': Fixe.invalid && (Fixe.dirty || Fixe.touched) }">
                     <div class="form-control-feedback" *ngIf="Fixe.errors && (Fixe.dirty || Fixe.touched)">
                     </div>
-                    <div *ngIf="Fixe.errors.required" class="invalid-feedback">
-                            <div>Fixe is required</div>
-                        </div>
+                    <div *ngIf="Fixe.errors?.required" class="invalid-feedback">
+                        <div>Fixe is required</div>
+                    </div>
                 </div>
 
 
@@ -117,33 +152,61 @@
                                     'has-success': email.valid && (email.dirty || email.touched)
                                     }">
                     <label>Email</label>
-                    <input type="email" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': f.email.errors }">
+                    <input type="text" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': email.invalid && (email.dirty || email.touched) }">
                     <div class="form-control-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
                     </div>
 
-                    <div *ngIf="email.errors.required" class="invalid-feedback">
-                            <div>Email is required</div>
-                        </div>
-                    <!--
-                                <pre>Valid? {{ myform.controls.email.valid }}</pre>
-                                <pre>Dirty? {{ myform.controls.email.dirty }}</pre>
-                                -->
-
+                    <div *ngIf="email.errors?.required" class="invalid-feedback">
+                        <div>Email is required</div>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label>Institut :</label>
-                    <input class="form-control" placeholder="">
+
+
+                <div class="form-group" [ngClass]="{
+                    'has-danger': institut.invalid && (institut.dirty || institut.touched),
+                    'has-success': institut.valid && (institut.dirty || institut.touched)
+                    }">
+                    <label>Institut</label>
+                    <input type="text" class="form-control" formControlName="institut" [ngClass]="{ 'is-invalid': institut.invalid && (institut.dirty || institut.touched) }">
+                    <div class="form-control-feedback" *ngIf="institut.errors && (institut.dirty || institut.touched)">
+                    </div>
+
+                    <div *ngIf="institut.errors?.required" class="invalid-feedback">
+                        <div>institut is required</div>
+                    </div>
                 </div>
 
-                <div class="form-group">
+
+
+                <div class="form-group" [ngClass]="{
+                    'has-danger': skype.invalid && (skype.dirty || skype.touched),
+                    'has-success': skype.valid && (skype.dirty || skype.touched)
+                    }">
                     <label>Skype-id :</label>
-                    <input class="form-control" placeholder="">
+                    <input type="text" class="form-control" formControlName="skype" [ngClass]="{ 'is-invalid': skype.invalid && (skype.dirty || skype.touched) }">
+                    <div class="form-control-feedback" *ngIf="skype.errors && (skype.dirty || skype.touched)">
+                    </div>
+
+                    <div *ngIf="skype.errors?.required" class="invalid-feedback">
+                        <div>Skype-id is required</div>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label>Adresse MAC LAN :</label>
-                    <input class="form-control" placeholder="">
+
+
+                <div class="form-group" [ngClass]="{
+                    'has-danger': adresseMac.invalid && (adresseMac.dirty || adresseMac.touched),
+                    'has-success': adresseMac.valid && (adresseMac.dirty || adresseMac.touched)
+                    }">
+                    <label>adresseMac :</label>
+                    <input type="text" class="form-control" formControlName="adresseMac" [ngClass]="{ 'is-invalid': adresseMac.invalid && (adresseMac.dirty || adresseMac.touched) }">
+                    <div class="form-control-feedback" *ngIf="adresseMac.errors && (adresseMac.dirty || adresseMac.touched)">
+                    </div>
+
+                    <div *ngIf="adresseMac.errors?.required" class="invalid-feedback">
+                        <div>adresseMac is required</div>
+                    </div>
                 </div>
 
                 <div class="form-group">

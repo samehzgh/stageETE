@@ -23,6 +23,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
     styleUrls: ['./form.component.scss'],
     animations: [routerTransition()]
 })
+
 export class FormComponent implements OnInit {
 
     model: any = {};
@@ -40,11 +41,19 @@ export class FormComponent implements OnInit {
     myform: FormGroup;
     firstName: FormControl;
     lastName: FormControl;
-    email: FormControl;
+    dateN: FormControl;
+    CIN: FormControl;
+    delivre: FormControl;
+    adresse: FormControl;
+    ville: FormControl;
     codepostal: FormControl;
     Tel: FormControl;
     Fixe: FormControl;
-    CIN: FormControl;
+    email: FormControl;
+    institut: FormControl;
+    skype: FormControl;
+    adresseMac: FormControl;
+   
 
 
     ngOnInit() {
@@ -55,18 +64,19 @@ export class FormComponent implements OnInit {
     createFormControls() {
         this.firstName = new FormControl('', Validators.required);
         this.lastName = new FormControl('', Validators.required);
-        this.email = new FormControl('', [
+        this.dateN = new FormControl('', Validators.required);
+        this.CIN = new FormControl('', [
             Validators.required,
-            Validators.pattern("[^ @]*@[^ @]*")
+            Validators.minLength(8),
+            Validators.maxLength(8)
         ]);
+        this.delivre = new FormControl('', Validators.required);
+        this.adresse = new FormControl('', Validators.required);
+        this.ville = new FormControl('', Validators.required);
         this.codepostal = new FormControl('', [
             Validators.required,
             Validators.minLength(4),
             Validators.maxLength(4)
-        ]);
-        this.CIN = new FormControl('', [
-            Validators.required,
-            Validators.minLength(8)
         ]);
         this.Tel = new FormControl('', [
             Validators.required,
@@ -78,7 +88,14 @@ export class FormComponent implements OnInit {
             Validators.minLength(8),
             Validators.maxLength(8)
         ]);
-
+        this.email = new FormControl('', [
+            Validators.required,
+            Validators.pattern("[^ @]*@[^ @]*")
+        ]);
+        this.institut = new FormControl('', Validators.required);
+        this.skype = new FormControl('', Validators.required);
+        this.adresseMac = new FormControl('', Validators.required);
+      
     }
 
     // convenience getter for easy access to form fields
@@ -88,15 +105,25 @@ export class FormComponent implements OnInit {
         this.myform = new FormGroup({
             firstName: this.firstName,
             lastName: this.lastName,
-            email: this.email,
+            dateN: this.dateN,
+            CIN: this.CIN,
+            delivre: this.delivre,
+            adresse: this.adresse,
+            ville: this.ville,
             codepostal: this.codepostal,
             Tel: this.Tel,
             Fixe: this.Fixe,
-            CIN: this.CIN
+            email: this.email,
+            institut: this.institut,
+            skype: this.skype,
+            adresseMac: this.adresseMac
+           
+            
         });
 
     }
     onSubmit() {
+        console.log(this.firstName);
         if (this.myform.valid) {
             console.log("Form Submitted!", this.myform.value);
             this.stagiaireService.addStagiaire(this.myform.value);
