@@ -16,7 +16,8 @@
                             <th>Date & lieu de naissance</th>
                             <th>N°CIN</th>
                             <th>Délivrée le</th>
-                            <th>Adresse </th>
+                            <th>Adresse</th>
+                            <th>Ville</th>
                             <th>Code postal</th>
                             <th>Tel mobile</th>
                             <th>Fixe</th>
@@ -24,6 +25,7 @@
                             <th>Institut </th>
                             <th>Skype-id</th>
                             <th>Adresse MAC LAN</th>
+                            <th>Action</th>
                         </tr>
 
                         <tbody>
@@ -33,8 +35,9 @@
                                 <td>{{stagiaire.lastName}}</td>
                                 <td>{{stagiaire.dateN}}</td>
                                 <td>{{stagiaire.CIN}}</td>
-                                <td>{{stagiaire.adresse}}</td>
                                 <td>{{stagiaire.delivre}}</td>
+                                <td>{{stagiaire.adresse}}</td>
+                                <td>{{stagiaire.ville}}</td>
                                 <td>{{stagiaire.codepostal}}</td>
                                 <td>{{stagiaire.Tel}}</td>
                                 <td>{{stagiaire.Fixe}}</td>
@@ -42,6 +45,11 @@
                                 <td>{{stagiaire.institut}}</td>
                                 <td>{{stagiaire.skype}}</td>
                                 <td>{{stagiaire.adresseMac}}</td>
+                                <td>
+                                    <button class="btn btn-info" (click)="action(stagiaire.CIN)">
+                                        <span class="glyphicon glyphicon-share"></span> Modify
+                                    </button>
+                                </td>
                             </tr>
 
                         </tbody>
@@ -51,8 +59,10 @@
         </div>
     </div>
 
-	<button class="btn btn-link" ng-click="exportToExcel('#table1')">
-            <span class="glyphicon glyphicon-share"></span> Export to Excel
-        </button>
+    <button class="btn btn" (click)="exportToExcel()">
+        <span class="glyphicon glyphicon-share"></span> Export to Excel
+    </button>
+
+
 
 </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit, NgModule, Pipe } from '@angular/core';
 import { routerTransition } from '../../router.animations';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { StagiaireService } from '../../_services/stagiaire.service';
 
 import {
@@ -31,6 +31,7 @@ export class FormComponent implements OnInit {
 
     constructor(
         private router: Router,
+        private route: ActivatedRoute,
         private stagiaireService: StagiaireService) { }
 
     langs: string[] = [
@@ -53,12 +54,26 @@ export class FormComponent implements OnInit {
     institut: FormControl;
     skype: FormControl;
     adresseMac: FormControl;
-   
+
 
 
     ngOnInit() {
         this.createFormControls();
         this.createForm();
+        this.route.queryParams.subscribe(params => {
+            if (params.cin) {
+                let stagiaires = this.stagiaireService.getStagiaires();
+
+                let stagiaire: any;
+               
+                stagiaire = stagiaires.find(function(element) {
+                    return element.CIN == params.cin ;
+                   });
+
+                   console.log(stagiaire);
+
+            }
+        });
     }
 
     createFormControls() {
@@ -95,7 +110,7 @@ export class FormComponent implements OnInit {
         this.institut = new FormControl('', Validators.required);
         this.skype = new FormControl('', Validators.required);
         this.adresseMac = new FormControl('', Validators.required);
-      
+
     }
 
     // convenience getter for easy access to form fields
@@ -117,8 +132,8 @@ export class FormComponent implements OnInit {
             institut: this.institut,
             skype: this.skype,
             adresseMac: this.adresseMac
-           
-            
+
+
         });
 
     }
