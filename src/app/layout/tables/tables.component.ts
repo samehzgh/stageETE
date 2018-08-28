@@ -27,7 +27,8 @@ export class TablesComponent implements OnInit {
             quoteStrings: '"',
             decimalseparator: '.',
             showLabels: true,
-            headers: ["First Name", "Last Name", "Date & lieu de naissance", "N°CIN", "Délivrée le", "Adresse", "ville", "Code postal", "Tel mobile", "Fixe", "Email", 'Institut', 'Skype-id', 'Adresse MAC LAN']
+            // tslint:disable-next-line:max-line-length
+            headers: ['First Name', 'Last Name', 'Date & lieu de naissance', 'N°CIN', 'Délivrée le', 'Adresse', 'ville', 'Code postal', 'Tel mobile', 'Fixe', 'Email', 'Institut', 'Skype-id', 'Adresse MAC LAN', 'Departement','datedeb', 'datefin', 'Projet', 'Encadreur']
         };
         // tslint:disable-next-line:no-unused-expression
         new Angular5Csv(this.stagiaires, 'Listes des stagiaires', options);

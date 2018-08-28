@@ -1,5 +1,5 @@
 <div [@routerTransition]>
-    <app-page-header [heading]="'Tables'" [icon]="'fa-table'"></app-page-header>
+    <app-page-header [heading]="'Liste des stagiaires'" [icon]="'fa-table'"></app-page-header>
     <div class="row">
         <div class="col col-xl-12 col-lg-12">
             <div class="card mb-3">
@@ -25,6 +25,11 @@
                             <th>Institut </th>
                             <th>Skype-id</th>
                             <th>Adresse MAC LAN</th>
+                            <th>Departement</th>
+                            <th>Date de début du stage</th>
+                            <th>Date de fin du stage</th>
+                            <th>Projet ou tâches à accomplir</th>
+                            <th>Encadreur</th>
                             <th>Action</th>
                         </tr>
 
@@ -45,9 +50,14 @@
                                 <td>{{stagiaire.institut}}</td>
                                 <td>{{stagiaire.skype}}</td>
                                 <td>{{stagiaire.adresseMac}}</td>
+                                <td>{{stagiaire.Departement}}</td>
+                                <td>{{stagiaire.datedeb}}</td>
+                                <td>{{stagiaire.datefin}}</td>
+                                <td>{{stagiaire.Projet}}</td>
+                                <td>{{stagiaire.Encadreur}}</td>
                                 <td>
                                     <button class="btn btn-info" (click)="action(stagiaire.CIN)">
-                                        <span class="glyphicon glyphicon-share"></span> Modify
+                                        <span class="glyphicon glyphicon-share"></span> Modifier
                                     </button>
                                 </td>
                             </tr>
@@ -59,8 +69,8 @@
         </div>
     </div>
 
-    <button class="btn btn" (click)="exportToExcel()">
-        <span class="glyphicon glyphicon-share"></span> Export to Excel
+    <button class="btn btn" (click)="exportToExcel()" >
+        <span class="glyphicon glyphicon-share"></span> Exporter vers Excel
     </button>
 
 

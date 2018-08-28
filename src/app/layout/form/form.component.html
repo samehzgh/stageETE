@@ -1,5 +1,5 @@
 <div [@routerTransition]>
-    <app-page-header [heading]="'Forms'" [icon]="'fa-edit'"></app-page-header>
+    <app-page-header [heading]= "'Formulaire'" [icon]="'fa-edit'"></app-page-header>
 
     <div class="row">
         <div class="col-lg-6">
@@ -8,12 +8,12 @@
                                    'has-danger': firstName.invalid && (firstName.dirty || firstName.touched),
                                    'has-success': firstName.valid && (firstName.dirty || firstName.touched)
                                  }">
-                    <label>First Name</label>
+                    <label>Prénom</label>
                     <input type="text" class="form-control" formControlName="firstName" [ngClass]="{ 'is-invalid': firstName.invalid && (firstName.dirty || firstName.touched) }">
 
 
                     <div *ngIf="firstName.touched && firstName.errors?.required" class="invalid-feedback">
-                        <div>First Name is required</div>
+                        <div>Prénom incorrect!</div>
                     </div>
 
 
@@ -27,11 +27,11 @@
                                           'has-danger': lastName.invalid && (lastName.dirty || lastName.touched),
                                 'has-success': lastName.valid && (lastName.dirty || lastName.touched)
                             }">
-                    <label>Last Name</label>
+                    <label>Nom</label>
                     <input type="text" class="form-control" formControlName="lastName" [ngClass]="{ 'is-invalid': lastName.invalid && (lastName.dirty || lastName.touched) }">
 
                     <div *ngIf="lastName.errors?.required" class="invalid-feedback">
-                        <div>Last Name is required</div>
+                        <div>Nom incorrect!</div>
                     </div>
                 </div>
 
@@ -55,7 +55,7 @@
                     <label>N°CIN</label>
                     <input type="text" class="form-control" formControlName="CIN" [ngClass]="{ 'is-invalid': CIN.invalid && (CIN.dirty || CIN.touched) }">
                     <div *ngIf="CIN.errors?.minlength || CIN.errors?.maxlength" class="invalid-feedback">
-                        <div>CIN doit étre sur 8 chiffres</div>
+                        <div>CIN doit être sur 8 chiffres</div>
                     </div>
                 </div>
 
@@ -70,7 +70,7 @@
 
 
                     <div *ngIf="delivre.touched && delivre.errors?.required" class="invalid-feedback">
-                        <div>date is required</div>
+                        <div>Date incorrect!</div>
                     </div>
                 </div>
 
@@ -84,7 +84,7 @@
 
 
                     <div *ngIf="adresse.touched && adresse.errors?.required" class="invalid-feedback">
-                        <div>Adresse is required</div>
+                        <div>Adresse incorrect!</div>
                     </div>
                 </div>
 
@@ -100,7 +100,7 @@
 
 
                     <div *ngIf="ville.touched && ville.errors?.required" class="invalid-feedback">
-                        <div>Ville is required</div>
+                        <div>Ville incorrect!</div>
                     </div>
                 </div>
 
@@ -113,7 +113,7 @@
                     <label>Code postal</label>
                     <input type="text" class="form-control" formControlName="codepostal" [ngClass]="{ 'is-invalid': codepostal.invalid && (codepostal.dirty || codepostal.touched) }">
                     <div *ngIf="codepostal.errors?.required" class="invalid-feedback">
-                        <div>Code postal is required</div>
+                        <div>Code postal incorrect!</div>
                     </div>
                 </div>
 
@@ -128,7 +128,7 @@
                     <div class="form-control-feedback" *ngIf="Tel.errors && (Tel.dirty || Tel.touched)">
                     </div>
                     <div *ngIf="Tel.errors?.required" class="invalid-feedback">
-                        <div>Tel is required</div>
+                        <div>Tel incorrect!</div>
                     </div>
                 </div>
 
@@ -141,7 +141,7 @@
                     <div class="form-control-feedback" *ngIf="Fixe.errors && (Fixe.dirty || Fixe.touched)">
                     </div>
                     <div *ngIf="Fixe.errors?.required" class="invalid-feedback">
-                        <div>Fixe is required</div>
+                        <div>Fixe incorrect!</div>
                     </div>
                 </div>
 
@@ -157,7 +157,7 @@
                     </div>
 
                     <div *ngIf="email.errors?.required" class="invalid-feedback">
-                        <div>Email is required</div>
+                        <div>Email incorrect!</div>
                     </div>
                 </div>
 
@@ -173,7 +173,7 @@
                     </div>
 
                     <div *ngIf="institut.errors?.required" class="invalid-feedback">
-                        <div>institut is required</div>
+                        <div>Institut incorrect!</div>
                     </div>
                 </div>
 
@@ -189,7 +189,7 @@
                     </div>
 
                     <div *ngIf="skype.errors?.required" class="invalid-feedback">
-                        <div>Skype-id is required</div>
+                        <div>Skype-id incorrect!</div>
                     </div>
                 </div>
 
@@ -199,15 +199,85 @@
                     'has-danger': adresseMac.invalid && (adresseMac.dirty || adresseMac.touched),
                     'has-success': adresseMac.valid && (adresseMac.dirty || adresseMac.touched)
                     }">
-                    <label>adresseMac :</label>
+                    <label>AdresseMac :</label>
                     <input type="text" class="form-control" formControlName="adresseMac" [ngClass]="{ 'is-invalid': adresseMac.invalid && (adresseMac.dirty || adresseMac.touched) }">
                     <div class="form-control-feedback" *ngIf="adresseMac.errors && (adresseMac.dirty || adresseMac.touched)">
                     </div>
 
                     <div *ngIf="adresseMac.errors?.required" class="invalid-feedback">
-                        <div>adresseMac is required</div>
+                        <div>AdresseMac incorrect!</div>
                     </div>
                 </div>
+
+                <div class="form-group" [ngClass]="{
+                    'has-danger': departement.invalid && (departement.dirty || departement.touched),
+                    'has-success': departement.valid && (departement.dirty || departement.touched)
+                    }">
+                    <label>Departement :</label>
+                    <input type="text" class="form-control" formControlName="departement" [ngClass]="{ 'is-invalid': departement.invalid && (departement.dirty || departement.touched) }">
+                    <div class="form-control-feedback" *ngIf="departement.errors && (departement.dirty || departement.touched)">
+                    </div>
+
+                    <div *ngIf="departement.errors?.required" class="invalid-feedback">
+                        <div>Departement incorrect!</div>
+                    </div>
+                </div>
+
+                <div class="form-group" [ngClass]="{
+                    'has-danger': datedeb.invalid && (datedeb.dirty || datedeb.touched),
+                    'has-success': datedeb.valid && (datedeb.dirty || datedeb.touched)
+                  }">
+                    <label>Date de début du stage :</label>
+                    <input type="date" placeholder="00/00/0000" class="form-control" formControlName="datedeb" [ngClass]="{ 'is-invalid': datedeb.invalid && (datedeb.dirty || datedeb.touched) }">
+
+
+                    <div *ngIf="datedeb.touched && datedeb.errors?.required" class="invalid-feedback">
+                        <div>Date incorrect!</div>
+                    </div>
+                </div>
+                
+                <div class="form-group" [ngClass]="{
+                    'has-danger': datefin.invalid && (datefin.dirty || datefin.touched),
+                    'has-success': datefin.valid && (datefin.dirty || datefin.touched)
+                  }">
+                    <label>Date de fin du stage :</label>
+                    <input type="date" placeholder="00/00/0000" class="form-control" formControlName="datefin" [ngClass]="{ 'is-invalid': datefin.invalid && (datefin.dirty || datefin.touched) }">
+
+
+                    <div *ngIf="datefin.touched && datefin.errors?.required" class="invalid-feedback">
+                        <div>Date incorrect!</div>
+                    </div>
+                </div>
+
+                <div class="form-group" [ngClass]="{
+                    'has-danger': projet.invalid && (projet.dirty || projet.touched),
+                    'has-success': projet.valid && (projet.dirty || projet.touched)
+                    }">
+                    <label>Projet ou tâches à accomplir</label>
+                    <input type="text" class="form-control" formControlName="projet" [ngClass]="{ 'is-invalid': projet.invalid && (projet.dirty || projet.touched) }">
+                    <div class="form-control-feedback" *ngIf="projet.errors && (projet.dirty || projet.touched)">
+                    </div>
+
+                    <div *ngIf="projet.errors?.required" class="invalid-feedback">
+                        <div>Projet incorrect!</div>
+                    </div>
+                </div>
+
+                
+                <div class="form-group" [ngClass]="{
+                    'has-danger': encadreur.invalid && (encadreur.dirty || encadreur.touched),
+                    'has-success': encadreur.valid && (encadreur.dirty || encadreur.touched)
+                    }">
+                    <label>Encadreur</label>
+                    <input type="text" class="form-control" formControlName="encadreur" [ngClass]="{ 'is-invalid': encadreur.invalid && (encadreur.dirty || encadreur.touched) }">
+                    <div class="form-control-feedback" *ngIf="encadreur.errors && (encadreur.dirty || encadreur.touched)">
+                    </div>
+
+                    <div *ngIf="encadreur.errors?.required" class="invalid-feedback">
+                        <div>Encadreur incorrect!</div>
+                    </div>
+                </div>
+
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary" [routerLink]="['/tables']" [disabled]="!myform.valid">Submit</button>

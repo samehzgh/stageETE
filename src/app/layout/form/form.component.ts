@@ -34,11 +34,6 @@ export class FormComponent implements OnInit {
         private route: ActivatedRoute,
         private stagiaireService: StagiaireService) { }
 
-    langs: string[] = [
-        'English',
-        'French',
-        'German',
-    ];
     myform: FormGroup;
     firstName: FormControl;
     lastName: FormControl;
@@ -54,7 +49,13 @@ export class FormComponent implements OnInit {
     institut: FormControl;
     skype: FormControl;
     adresseMac: FormControl;
+    departement: FormControl;
+    datedeb: FormControl;
+    datefin: FormControl;
+    projet: FormControl;
+    encadreur: FormControl;
 
+    params:any;
 
 
     ngOnInit() {
@@ -62,15 +63,38 @@ export class FormComponent implements OnInit {
         this.createForm();
         this.route.queryParams.subscribe(params => {
             if (params.cin) {
+                this.params = params;
                 let stagiaires = this.stagiaireService.getStagiaires();
 
                 let stagiaire: any;
-               
+
                 stagiaire = stagiaires.find(function(element) {
                     return element.CIN == params.cin ;
                    });
 
                    console.log(stagiaire);
+
+                   this.firstName.patchValue(stagiaire.firstName);
+                   this.firstName.patchValue(stagiaire.firstName);
+                   this.firstName.patchValue(stagiaire.firstName);
+                   this.lastName.patchValue(stagiaire.lastName);
+                   this.dateN.patchValue(stagiaire.dateN);
+                   this.CIN.patchValue(stagiaire.CIN);
+                   this.delivre.patchValue(stagiaire.delivre);
+                   this.adresse.patchValue(stagiaire.adresse);
+                   this.ville.patchValue(stagiaire.ville);
+                   this.codepostal.patchValue(stagiaire.codepostal);
+                   this.Tel.patchValue(stagiaire.Tel);
+                   this.Fixe.patchValue(stagiaire.Fixe);
+                   this.email.patchValue(stagiaire.email);
+                   this.institut.patchValue(stagiaire.institut);
+                   this.skype.patchValue(stagiaire.skype);
+                   this.adresseMac.patchValue(stagiaire.adresseMac);
+                   this.departement.patchValue(stagiaire.departement);
+                   this.datedeb.patchValue(stagiaire.datedeb);
+                   this.datefin.patchValue(stagiaire.datefin);
+                   this.projet.patchValue(stagiaire.projet);
+                   this.encadreur.patchValue(stagiaire.encadreur);
 
             }
         });
@@ -105,11 +129,19 @@ export class FormComponent implements OnInit {
         ]);
         this.email = new FormControl('', [
             Validators.required,
-            Validators.pattern("[^ @]*@[^ @]*")
+            Validators.pattern('[^ @]*@[^ @]*')
         ]);
         this.institut = new FormControl('', Validators.required);
         this.skype = new FormControl('', Validators.required);
         this.adresseMac = new FormControl('', Validators.required);
+        
+        this.departement = new FormControl('', Validators.required);
+        this.datedeb = new FormControl('', Validators.required);
+        this.datefin = new FormControl('', Validators.required);
+        this.projet = new FormControl('', Validators.required);
+        this.encadreur = new FormControl('', Validators.required);
+       
+
 
     }
 
@@ -131,7 +163,12 @@ export class FormComponent implements OnInit {
             email: this.email,
             institut: this.institut,
             skype: this.skype,
-            adresseMac: this.adresseMac
+            adresseMac: this.adresseMac,
+            departement: this.departement,
+            datedeb: this.datedeb,
+            datefin: this.datefin,
+            projet: this.projet,
+            encadreur: this.encadreur
 
 
         });
@@ -140,9 +177,18 @@ export class FormComponent implements OnInit {
     onSubmit() {
         console.log(this.firstName);
         if (this.myform.valid) {
-            console.log("Form Submitted!", this.myform.value);
-            this.stagiaireService.addStagiaire(this.myform.value);
+
+            if (this.params.cin) {
+          /*  for(let i=0;i<n;i++)
+            {
+
+            }*/
+            } else {
+                console.log("Form Submitted!", this.myform.value);
+                this.stagiaireService.addStagiaire(this.myform.value);
+            }
         }
+
     }
 }
 

@@ -12,7 +12,7 @@
         
         <a [routerLink]="['/tables']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-table"></i>&nbsp;
-            <span>{{ 'Tables' | translate }}</span>
+            <span>{{ 'Liste des stagiaires' | translate }}</span>
         </a>
 
        
@@ -20,6 +20,6 @@
 
     <div class="toggle-button" [ngClass]="{collapsed: collapsed}" (click)="toggleCollapsed()">
         <i class="fa fa-fw fa-angle-double-left"></i>&nbsp;
-        <span>{{ 'Collapse Sidebar' | translate }}</span>
+        <span>{{ 'Réduire la barre' | translate }}</span>
     </div>
 </nav>
