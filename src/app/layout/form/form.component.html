@@ -57,6 +57,9 @@
                     <div *ngIf="CIN.errors?.minlength || CIN.errors?.maxlength" class="invalid-feedback">
                         <div>CIN doit être sur 8 chiffres</div>
                     </div>
+                    <div *ngIf="CIN.errors?.pattern" class="invalid-feedback">
+                        <div>CIN doit être sur 8 chiffres</div>
+                    </div>
                 </div>
 
 
@@ -115,6 +118,9 @@
                     <div *ngIf="codepostal.errors?.required" class="invalid-feedback">
                         <div>Code postal incorrect!</div>
                     </div>
+                    <div *ngIf="codepostal.errors?.pattern" class="invalid-feedback">
+                        <div>Code doit être sur 4 chiffres</div>
+                    </div>
                 </div>
 
 
@@ -130,6 +136,10 @@
                     <div *ngIf="Tel.errors?.required" class="invalid-feedback">
                         <div>Tel incorrect!</div>
                     </div>
+                    
+                    <div *ngIf="Tel.errors?.pattern" class="invalid-feedback">
+                        <div>Tel incorrect!</div>
+                    </div>
                 </div>
 
                 <div class="form-group" [ngClass]="{
@@ -141,6 +151,9 @@
                     <div class="form-control-feedback" *ngIf="Fixe.errors && (Fixe.dirty || Fixe.touched)">
                     </div>
                     <div *ngIf="Fixe.errors?.required" class="invalid-feedback">
+                        <div>Fixe incorrect!</div>
+                    </div>
+                    <div *ngIf="Fixe.errors?.pattern" class="invalid-feedback">
                         <div>Fixe incorrect!</div>
                     </div>
                 </div>
@@ -280,7 +293,7 @@
 
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary" [routerLink]="['/tables']" [disabled]="!myform.valid">Submit</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="!myform.valid">Submit</button>
 
                 </div>
 

@@ -55,46 +55,47 @@ export class FormComponent implements OnInit {
     projet: FormControl;
     encadreur: FormControl;
 
-    params:any;
-
+    cin: any;
+    stagiaires = this.stagiaireService.getStagiaires();
 
     ngOnInit() {
         this.createFormControls();
         this.createForm();
         this.route.queryParams.subscribe(params => {
             if (params.cin) {
-                this.params = params;
-                let stagiaires = this.stagiaireService.getStagiaires();
+                this.cin = params.cin;
+
+
 
                 let stagiaire: any;
 
-                stagiaire = stagiaires.find(function(element) {
-                    return element.CIN == params.cin ;
-                   });
+                stagiaire = this.stagiaires.find(function (element) {
+                    return element.CIN === params.cin;
+                });
 
-                   console.log(stagiaire);
+                console.log(stagiaire);
 
-                   this.firstName.patchValue(stagiaire.firstName);
-                   this.firstName.patchValue(stagiaire.firstName);
-                   this.firstName.patchValue(stagiaire.firstName);
-                   this.lastName.patchValue(stagiaire.lastName);
-                   this.dateN.patchValue(stagiaire.dateN);
-                   this.CIN.patchValue(stagiaire.CIN);
-                   this.delivre.patchValue(stagiaire.delivre);
-                   this.adresse.patchValue(stagiaire.adresse);
-                   this.ville.patchValue(stagiaire.ville);
-                   this.codepostal.patchValue(stagiaire.codepostal);
-                   this.Tel.patchValue(stagiaire.Tel);
-                   this.Fixe.patchValue(stagiaire.Fixe);
-                   this.email.patchValue(stagiaire.email);
-                   this.institut.patchValue(stagiaire.institut);
-                   this.skype.patchValue(stagiaire.skype);
-                   this.adresseMac.patchValue(stagiaire.adresseMac);
-                   this.departement.patchValue(stagiaire.departement);
-                   this.datedeb.patchValue(stagiaire.datedeb);
-                   this.datefin.patchValue(stagiaire.datefin);
-                   this.projet.patchValue(stagiaire.projet);
-                   this.encadreur.patchValue(stagiaire.encadreur);
+                this.firstName.patchValue(stagiaire.firstName);
+                this.firstName.patchValue(stagiaire.firstName);
+                this.firstName.patchValue(stagiaire.firstName);
+                this.lastName.patchValue(stagiaire.lastName);
+                this.dateN.patchValue(stagiaire.dateN);
+                this.CIN.patchValue(stagiaire.CIN);
+                this.delivre.patchValue(stagiaire.delivre);
+                this.adresse.patchValue(stagiaire.adresse);
+                this.ville.patchValue(stagiaire.ville);
+                this.codepostal.patchValue(stagiaire.codepostal);
+                this.Tel.patchValue(stagiaire.Tel);
+                this.Fixe.patchValue(stagiaire.Fixe);
+                this.email.patchValue(stagiaire.email);
+                this.institut.patchValue(stagiaire.institut);
+                this.skype.patchValue(stagiaire.skype);
+                this.adresseMac.patchValue(stagiaire.adresseMac);
+                this.departement.patchValue(stagiaire.departement);
+                this.datedeb.patchValue(stagiaire.datedeb);
+                this.datefin.patchValue(stagiaire.datefin);
+                this.projet.patchValue(stagiaire.projet);
+                this.encadreur.patchValue(stagiaire.encadreur);
 
             }
         });
@@ -107,26 +108,30 @@ export class FormComponent implements OnInit {
         this.CIN = new FormControl('', [
             Validators.required,
             Validators.minLength(8),
-            Validators.maxLength(8)
-        ]);
+            Validators.maxLength(8),
+            Validators.pattern(/^-?(0|[1-9]\d*)?$/)]
+        );
         this.delivre = new FormControl('', Validators.required);
         this.adresse = new FormControl('', Validators.required);
         this.ville = new FormControl('', Validators.required);
         this.codepostal = new FormControl('', [
             Validators.required,
             Validators.minLength(4),
-            Validators.maxLength(4)
-        ]);
+            Validators.maxLength(4),
+            Validators.pattern(/^-?(0|[1-9]\d*)?$/)],
+        );
         this.Tel = new FormControl('', [
             Validators.required,
             Validators.minLength(8),
-            Validators.maxLength(8)
-        ]);
+            Validators.maxLength(8),
+            Validators.pattern(/^-?(0|[1-9]\d*)?$/)],
+        );
         this.Fixe = new FormControl('', [
             Validators.required,
             Validators.minLength(8),
-            Validators.maxLength(8)
-        ]);
+            Validators.maxLength(8),
+            Validators.pattern(/^-?(0|[1-9]\d*)?$/)],
+        );
         this.email = new FormControl('', [
             Validators.required,
             Validators.pattern('[^ @]*@[^ @]*')
@@ -134,13 +139,13 @@ export class FormComponent implements OnInit {
         this.institut = new FormControl('', Validators.required);
         this.skype = new FormControl('', Validators.required);
         this.adresseMac = new FormControl('', Validators.required);
-        
+
         this.departement = new FormControl('', Validators.required);
         this.datedeb = new FormControl('', Validators.required);
         this.datefin = new FormControl('', Validators.required);
         this.projet = new FormControl('', Validators.required);
         this.encadreur = new FormControl('', Validators.required);
-       
+
 
 
     }
@@ -178,15 +183,21 @@ export class FormComponent implements OnInit {
         console.log(this.firstName);
         if (this.myform.valid) {
 
-            if (this.params.cin) {
-          /*  for(let i=0;i<n;i++)
-            {
-
-            }*/
+            if (this.cin) {
+                console.log('modifying', this.cin);
+                for (let i = 0; i < this.stagiaires.length; i++) {
+                    if (this.stagiaires[i].CIN === this.cin) {
+                        console.log('form value', this.myform.value);
+                        console.log('stagiaire', this.stagiaires[i]);
+                        this.stagiaires[i] = this.myform.value;
+                    }
+                }
+                localStorage.setItem('stagiaire', JSON.stringify(this.stagiaires));
             } else {
-                console.log("Form Submitted!", this.myform.value);
+                console.log('Form Submitted!', this.myform.value);
                 this.stagiaireService.addStagiaire(this.myform.value);
             }
+this.router.navigate(['/tables'])
         }
 
     }
